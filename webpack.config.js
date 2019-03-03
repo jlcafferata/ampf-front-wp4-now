@@ -24,6 +24,40 @@ var config = {
         query: {
           presets: ["es2015", "react", "stage-2"]
         }
+      },
+      {
+        test: /\.(png|jpg|jpeg|gif|svg|woff|woff2)$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {}
+          }
+        ]
+      },
+      {
+        test: /\.css$/,
+        loader: "style-loader"
+      },
+      {
+        test: /\.css$/,
+        loader: "css-loader",
+        query: {
+          modules: true,
+          localIdentName: "[name]__[local]___[hash:base64:5]"
+        }
+      },
+      {
+        test: /\.html$/,
+        use: [
+          {
+            loader: "html-loader",
+            options: { minimize: true }
+          }
+        ]
+      },
+      {
+        test: /\.(eot|ttf)$/,
+        loader: "file-loader"
       }
     ]
   },

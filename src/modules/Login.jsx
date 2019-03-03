@@ -1,7 +1,23 @@
 import React, { Component } from "react";
-import { Redirect, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { userActions } from "./../actions/user.action";
+
+import {
+  Form,
+  FormGroup,
+  Input,
+  Label,
+  Card,
+  CardBody,
+  CardHeader,
+  CardTitle,
+  CardFooter,
+  Row,
+  Col
+} from "reactstrap";
+
+import { PanelHeader, Button } from "./../components";
 
 /*const fakeAuth = {
   isAuthenticated: false,
@@ -24,7 +40,10 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
-      submitted: false
+      submitted: false,
+      login: {
+        fullNameState: ""
+      }
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -58,49 +77,50 @@ class Login extends Component {
     return (
       <div>
         {error}
-        <form id="form1" onSubmit={this.handleSubmit} method="POST">
-          <div
-            className={
-              "form-group" + (submitted && !email ? " has-error" : "")
-            }>
-            <label>Email</label>
-            <input
-              type="email"
-              className="form-control"
-              name="email"
-              value={email}
-              onChange={this.handleChange}
-            />
-            {submitted && !email && (
-              <div className="help-block">Email requerido</div>
-            )}
-          </div>
-          <div
-            className={
-              "form-group" + (submitted && !password ? " has-error" : "")
-            }>
-            <label>Password</label>
-            <input
-              type="password"
-              className="form-control"
-              name="password"
-              value={password}
-              onChange={this.handleChange}
-            />
-            {submitted && !password && (
-              <div className="help-block">Password requerido</div>
-            )}
-          </div>
-          <div className="form-group">
-            <button className="btn btn-primary">Login</button>
-            {loggingIn && (
-              <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-            )}
-            <Link to="/register" className="btn btn-link">
-              Register
-            </Link>
-          </div>
-        </form>
+        <PanelHeader size="sm" />
+        <div className="content">
+          <Row>
+            <Col xs={12} md={6}>
+              <Form onSubmit={this.handleSubmit} method="POST">
+                <Card>
+                  <CardHeader>
+                    <CardTitle tag="h4">Login</CardTitle>
+                  </CardHeader>
+                  <CardBody>
+                    <FormGroup
+                      className={"has-label " + this.state.login.fullNameState}>
+                      <Label>Email *</Label>
+                      <Input
+                        type="email"
+                        className="form-control"
+                        name="email"
+                        value={email}
+                        onChange={this.handleChange}
+                      />
+                    </FormGroup>
+                    <FormGroup
+                      className={"has-label " + this.state.login.passwordState}>
+                      <Label>Password *</Label>
+                      <Input
+                        type="password"
+                        className="form-control"
+                        name="password"
+                        value={password}
+                        onChange={this.handleChange}
+                      />
+                    </FormGroup>
+                    <div className="category form-category">
+                      * Required fields
+                    </div>
+                  </CardBody>
+                  <CardFooter className="text-center">
+                    <Button color="primary">Login</Button>
+                  </CardFooter>
+                </Card>
+              </Form>
+            </Col>
+          </Row>
+        </div>
       </div>
     );
   }

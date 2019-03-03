@@ -8,7 +8,7 @@ import {
   withRouter
 } from "react-router-dom";
 
-import Login from "./../../modules/Login.jsx";
+import Login from "./../../../modules/Login.jsx";
 
 class App extends Component {
   constructor(props) {
